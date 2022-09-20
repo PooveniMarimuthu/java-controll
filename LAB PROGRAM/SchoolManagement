@@ -1,0 +1,59 @@
+/* @author: pooveni
+    Title: Synchronize.
+    Quiz: To create the program using synchronize.
+*/
+class Teacher extends Thread{
+
+synchronized void groupid1() {
+for(int i=0;i<5;i++) {
+System.out.println(i);
+}
+}
+synchronized void groupid2() {
+for(int i=6;i<10;i++) {
+System.out.println(i);
+}
+}
+}
+
+class Studentgroup1 extends Thread{
+Teacher obj;
+
+Studentgroup1(Teacher obj){
+this.obj=obj;
+}
+@Override
+public void run() {
+// TODO Auto-generated method stub
+obj.groupid1();
+}
+}
+
+class Studentgroup2 extends Thread{
+Teacher obj1;
+Studentgroup2(Teacher obj1)
+{
+this.obj1=obj1;
+}
+@Override
+public void run() {
+// TODO Auto-generated method stub
+obj1.groupid2();
+}
+}
+
+public class SchoolManagement{
+
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+Teacher obj = new Teacher();
+Studentgroup1 obj1 = new Studentgroup1(obj);
+Studentgroup2 obj2 = new Studentgroup2(obj);
+                   System.out.println(" Teacher rita is verifying the group1 and group2 student id ");
+     System.out.println("StudentsId starts from ");
+            obj1.start();
+                  obj2.start();
+
+}
+
+}
